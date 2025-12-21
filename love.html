@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Only For Selin ❤️</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins", Arial, sans-serif;
+}
+
+body{
+  height:100vh;
+  background:#dc649c;
+  overflow:hidden;
+}
+
+/* Floating hearts */
+.heart{
+  position:absolute;
+  bottom:-20px;
+  font-size:18px;
+  color:rgba(255,255,255,0.8);
+  animation:float 6s linear infinite;
+  z-index:1;   /* ❤️ hearts in background */
+}
+
+
+@keyframes float{
+  0%{transform:translateY(0);opacity:1;}
+  100%{transform:translateY(-100vh);opacity:0;}
+}
+
+/* Lock screen */
+#lock{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(255,255,255,0.95);
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  width:320px;
+  z-index:10;
+}
+
+input{
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #ccc;
+  width:85%;
+  text-align:center;
+}
+
+button{
+  margin-top:15px;
+  padding:12px 25px;
+  background:#ff4d6d;
+  color:white;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+#error{color:red;margin-top:10px;}
+
+/* Sections */
+.section{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:2;   /* 💌 above hearts */
+}
+
+
+/* Letter background */
+#letterSection{
+  background:url("letter_bg.jpg") center/cover no-repeat;
+}
+
+.overlay{
+  background:rgba(0,0,0,0.6);
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  z-index:3;   /* ✨ text always on top */
+}
+
+
+/* Letter text */
+#letter{
+  color:white;
+  max-width:800px;
+  font-size:22px;
+  line-height:1.7;
+  text-align:center;
+  white-space:pre-line;
+
+  max-height:80vh;
+  overflow-y:auto;
+  padding:20px;
+  -webkit-overflow-scrolling: touch;
+
+  text-shadow:
+    0 0 8px rgba(255,182,193,0.6),
+    0 0 15px rgba(255,182,193,0.4);
+  animation:breath 6s ease-in-out infinite;
+}
+#cursor{
+  display:inline-block;
+  margin-left:5px;
+  animation:blink 1s infinite;
+  color:#ffb3c1;
+}
+
+@keyframes blink{
+  0%{opacity:1;}
+  50%{opacity:0;}
+  100%{opacity:1;}
+}
+
+@keyframes breath{
+  0%{text-shadow:0 0 8px rgba(255,182,193,0.4);}
+  50%{text-shadow:0 0 18px rgba(255,182,193,0.8);}
+  100%{text-shadow:0 0 8px rgba(255,182,193,0.4);}
+}
+
+
+
+/* Slideshow */
+#slideshow{
+  background:#c73f7a;
+}
+
+.slideshow{
+  width:85%;
+  height:85%;
+  position:relative;
+}
+
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:contain;   /* ✅ fits full photo */
+  background-color:#000;
+  opacity:0;
+  transition:opacity 2s ease;
+}
+.slide.active{
+  opacity:1;
+  animation:zoom 7.5s ease-in-out;
+}
+
+@keyframes zoom{
+  from{transform:scale(1);}
+  to{transform:scale(1.05);}
+}
+
+
+
+.slide.active{
+  opacity:1;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ❤️ Floating Hearts -->
+<script>
+for(let i=0;i<30;i++){
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(h);
+}
+</script>
+
+<!-- 🔐 LOCK -->
+<div id="lock">
+  <h2>Only For U Selin ❤️</h2><br>
+  <input type="password" id="pass" placeholder="Our secret password">
+  <br>
+  <button onclick="unlock()">Unlock 💖</button>
+  <p id="error"></p>
+</div>
+
+<!-- 💌 LETTER SECTION -->
+<div class="section" id="letterSection">
+  <div class="overlay">
+    <div id="letter"><span id="cursor">|</span></div>
+
+  </div>
+</div>
+
+<!-- 📸 SLIDESHOW SECTION -->
+<div class="section" id="slideshow">
+  <div class="slideshow">
+    <img src="pic1  .jpg" class="slide active">
+    <img src="pic2  .jpg" class="slide">
+    <img src="pic3  .jpg" class="slide">
+    <img src="pic4  .jpg" class="slide">
+    <img src="pic5  .jpg" class="slide">
+    <img src="pic6  .jpg" class="slide">
+    <img src="pic7  .jpg" class="slide">
+    <img src="pic8  .jpg" class="slide">
+    <img src="pic9  .jpg" class="slide">
+    <img src="pic10  .jpg" class="slide">
+  </div>
+</div>
+
+<!-- 🎶 MUSIC -->
+<audio id="bgm" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const PASSWORD = "1234"; // 🔑 CHANGE THIS
+
+const text = `
+My Selin ❤️
+Almost one year ago, love quietly found me,
+and it looked exactly like you.
+
+I didn’t realize it at first,
+but with every conversation,
+every laugh,
+every moment of silence we shared,
+you slowly became my favorite part of every day.
+
+With you, even ordinary moments feel special.
+A simple message from you can change my mood,
+your smile can calm my mind,
+and your presence makes everything feel lighter.
+
+We are not perfect,
+but what we have is real.
+We’ve grown together,
+learned together,
+and chosen each other again and again.
+That means more to me than anything else.
+
+You are my peace on difficult days,
+my happiness on good ones,
+and my safe place when the world feels heavy.
+Loving you feels natural,
+like my heart always knew where it belonged.
+
+As we complete almost one year together,
+I want you to know this:
+no matter what comes next,
+no matter how life changes,
+I choose you.
+I will keep choosing you.
+
+This journey with you
+is my favorite story,
+and I can’t wait to write
+every next chapter
+with you by my side ❤️
+
+    I LOVE YOU   `;
+let i = 0;
+
+/* Unlock */
+function unlock(){
+  if(document.getElementById("pass").value === PASSWORD){
+    document.getElementById("lock").style.display = "none";
+    document.getElementById("letterSection").style.display = "flex";
+    document.getElementById("bgm").play();
+    typeWriter();
+
+    setTimeout(()=>{
+      document.getElementById("letterSection").style.display="none";
+      document.getElementById("slideshow").style.display="flex";
+      startSlideshow();
+    }, text.length * 100 + 15000); // ⏱️ synced for 3-min song
+  } else {
+    document.getElementById("error").innerText = "Wrong password 💔";
+  }
+}
+
+/* Typewriter */
+function typeWriter(){
+  const letterBox = document.getElementById("letter");
+  const cursor = document.getElementById("cursor");
+
+  if(i < text.length){
+    cursor.remove();
+    letterBox.innerHTML += text.charAt(i);
+    letterBox.appendChild(cursor);
+
+    letterBox.scrollTop = letterBox.scrollHeight;
+    i++;
+    setTimeout(typeWriter, 100);
+  }
+}
+
+
+
+/* Slideshow */
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+function startSlideshow(){
+  setInterval(()=>{
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+  }, 7500); // 10 pics ≈ 75 sec
+}
+</script>
+
+</body>
+</html>
